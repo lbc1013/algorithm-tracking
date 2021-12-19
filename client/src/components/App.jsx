@@ -10,10 +10,13 @@ class App extends React.Component {
       list : []
     };
 
+    //http requeest related
     this.handleSumbit = this.handleSumbit.bind(this);
     this.handleGet = this.handleGet.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
+
+    this.handleAlgorithmClick = this.handleAlgorithmClick.bind(this);
   }
 
   handleSumbit (event) {
@@ -99,6 +102,12 @@ class App extends React.Component {
       })
   }
 
+  handleAlgorithmClick (algorithm) {
+    console.log(algorithm);
+
+    document.getElementById(algorithm).style.display = 'block';
+  }
+
   componentDidMount () {
     console.log('app started')
     this.handleGet();
@@ -109,7 +118,7 @@ class App extends React.Component {
     <div>
       <h2>[Algorithms Tracker]</h2>
       <AddBar handleUpdate = {this.handleUpdate} handleDelete = {this.handleDelete} handleSumbit = {this.handleSumbit}/>
-      <List dataList = {this.state.list}/>
+      <List handleAlgorithmClick = {this.handleAlgorithmClick} dataList = {this.state.list}/>
     </div>
     );
   }

@@ -222,11 +222,13 @@ var App = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       list: []
-    };
+    }; //http requeest related
+
     _this.handleSumbit = _this.handleSumbit.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this));
     _this.handleGet = _this.handleGet.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this));
     _this.handleDelete = _this.handleDelete.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this));
     _this.handleUpdate = _this.handleUpdate.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this));
+    _this.handleAlgorithmClick = _this.handleAlgorithmClick.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this));
     return _this;
   }
 
@@ -319,6 +321,12 @@ var App = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "handleAlgorithmClick",
+    value: function handleAlgorithmClick(algorithm) {
+      console.log(algorithm);
+      document.getElementById(algorithm).style.display = 'block';
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       console.log('app started');
@@ -332,6 +340,7 @@ var App = /*#__PURE__*/function (_React$Component) {
         handleDelete: this.handleDelete,
         handleSumbit: this.handleSumbit
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_List_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        handleAlgorithmClick: this.handleAlgorithmClick,
         dataList: this.state.list
       }));
     }
@@ -362,6 +371,7 @@ __webpack_require__.r(__webpack_exports__);
 function List(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, props.dataList.map(function (element) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ListEntry_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      handleAlgorithmClick: props.handleAlgorithmClick,
       eachList: element
     });
   }));
@@ -388,9 +398,13 @@ function ListEntry(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "ListEntry"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    onClick: function onClick() {
+      props.handleAlgorithmClick(props.eachList.name);
+    },
     id: "algo"
   }, "Algorithm Name : ", props.eachList.name, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    id: "lang"
+    "class": "lang",
+    id: props.eachList.name
   }, "Language : ", props.eachList.language));
 }
 

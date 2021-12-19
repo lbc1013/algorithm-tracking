@@ -5,7 +5,7 @@ function List (props) {
   return (
     <div>
       {props.dataList.map((element) => {
-        return <ListEntry eachList = {element}/>
+        return <ListEntry handleAlgorithmClick = {props.handleAlgorithmClick}eachList = {element}/>
       })}
     </div>
   )

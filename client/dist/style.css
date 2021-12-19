@@ -1,7 +1,6 @@
 body {
   font-family: Helvetica, sans-serif, arial;
   background-color: white;
-
 }
 
 #app {
@@ -12,11 +11,15 @@ body {
 }
 
 #ListEntry {
-  margin-top: 1px;
   border: 1px solid black;
-  margin-bottom: 1px;
+
 }
 
 #algo {
-  border-bottom: 1px solid black;
+  cursor: pointer;
+}
+
+.lang {
+  border-top: 1px solid black;
+  display: none;
 }
