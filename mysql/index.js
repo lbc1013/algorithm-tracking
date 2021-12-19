@@ -25,3 +25,16 @@ exports.addFunc = (userInputAlgo, userInputLan) => {
     });
   })
 }
+
+exports.getFunc = () => {
+  let sql = 'SELECT * FROM algorithm';
+  return new Promise ((resolve, reject) => {
+    connection.query(sql, (err, result) => {
+      if (err) {
+        reject (err);
+      } else {
+        resolve(result);
+      }
+    })
+  })
+}

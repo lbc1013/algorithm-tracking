@@ -139,7 +139,7 @@ var AddBar = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("label", null, "Algorithms : "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("input", {
         type: "text",
-        id: "algo"
+        id: "algor"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("label", null, "Language : "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("input", {
         type: "text",
         id: "lag"
@@ -153,7 +153,7 @@ var AddBar = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("input", {
         type: "submit",
         value: "Update"
-      }));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("br", null));
     }
   }]);
 
@@ -190,6 +190,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _AddBar_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./AddBar.jsx */ "./client/src/components/AddBar.jsx");
+/* harmony import */ var _List_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./List.jsx */ "./client/src/components/List.jsx");
 
 
 
@@ -200,6 +201,7 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default()(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 
 
 
@@ -216,16 +218,21 @@ var App = /*#__PURE__*/function (_React$Component) {
     _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, App);
 
     _this = _super.call(this, props);
-    _this.state = {};
+    _this.state = {
+      list: []
+    };
     _this.handleSumbit = _this.handleSumbit.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this));
+    _this.handleGet = _this.handleGet.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this));
     return _this;
   }
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(App, [{
     key: "handleSumbit",
     value: function handleSumbit(event) {
+      var _this2 = this;
+
       event.preventDefault();
-      var algorithmUserInput = document.getElementById('algo').value;
+      var algorithmUserInput = document.getElementById('algor').value;
       var languageUserInput = document.getElementById('lag').value;
       console.log(algorithmUserInput, languageUserInput);
       axios__WEBPACK_IMPORTED_MODULE_7___default()({
@@ -237,15 +244,42 @@ var App = /*#__PURE__*/function (_React$Component) {
         }
       }).then(function (result) {
         console.log("The POST request has been successfully done");
+
+        _this2.handleGet();
       })["catch"](function (err) {
         console.log("The POST request has an error");
       });
+    }
+  }, {
+    key: "handleGet",
+    value: function handleGet() {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_7___default()({
+        method: 'get',
+        url: '/algorithm'
+      }).then(function (result) {
+        console.log("The GET request has been successfully done", result);
+
+        _this3.setState({
+          list: result.data
+        });
+      })["catch"](function (err) {
+        console.log("The GET request has an error");
+      });
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.handleGet();
     }
   }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("h2", null, "[Algorithms Tracker]"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_AddBar_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
         handleSumbit: this.handleSumbit
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_List_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        dataList: this.state.list
       }));
     }
   }]);
@@ -254,6 +288,60 @@ var App = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_6___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
+
+/***/ }),
+
+/***/ "./client/src/components/List.jsx":
+/*!****************************************!*\
+  !*** ./client/src/components/List.jsx ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ListEntry_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ListEntry.jsx */ "./client/src/components/ListEntry.jsx");
+
+
+
+function List(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, props.dataList.map(function (element) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ListEntry_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      eachList: element
+    });
+  }));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (List);
+
+/***/ }),
+
+/***/ "./client/src/components/ListEntry.jsx":
+/*!*********************************************!*\
+  !*** ./client/src/components/ListEntry.jsx ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function ListEntry(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "ListEntry"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    id: "algo"
+  }, "Algorithm Name : ", props.eachList.name, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    id: "lang"
+  }, "Language : ", props.eachList.language));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (ListEntry);
 
 /***/ }),
 

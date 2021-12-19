@@ -10,3 +10,13 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+#ListEntry {
+  margin-top: 1px;
+  border: 1px solid black;
+  margin-bottom: 1px;
+}
+
+#algo {
+  border-bottom: 1px solid black;
+}

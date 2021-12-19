@@ -1,19 +1,22 @@
 import React from 'react';
 import axios from 'axios';
 import AddBar from './AddBar.jsx';
+import List from './List.jsx';
 
 class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
+      list : []
     };
 
     this.handleSumbit = this.handleSumbit.bind(this);
+    this.handleGet = this.handleGet.bind(this);
   }
 
   handleSumbit (event) {
     event.preventDefault();
-    let algorithmUserInput = document.getElementById('algo').value;
+    let algorithmUserInput = document.getElementById('algor').value;
     let languageUserInput = document.getElementById('lag').value;
     console.log(algorithmUserInput , languageUserInput) ;
 
@@ -27,10 +30,33 @@ class App extends React.Component {
     })
       .then ((result) => {
         console.log("The POST request has been successfully done");
+        this.handleGet();
       })
       .catch ((err) => {
         console.log("The POST request has an error");
       })
+  }
+
+  handleGet () {
+    axios({
+      method: 'get',
+      url: '/algorithm',
+    })
+      .then ((result) => {
+        console.log("The GET request has been successfully done", result);
+        this.setState ({
+          list: result.data
+        })
+      })
+      .catch ((err) => {
+        console.log("The GET request has an error");
+      })
+  }
+
+
+
+  componentDidMount () {
+    this.handleGet();
   }
 
   render () {
@@ -38,6 +64,7 @@ class App extends React.Component {
     <div>
       <h2>[Algorithms Tracker]</h2>
       <AddBar handleSumbit = {this.handleSumbit}/>
+      <List dataList = {this.state.list}/>
     </div>
     );
   }

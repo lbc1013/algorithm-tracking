@@ -1,10 +1,15 @@
 import React from 'react';
-import ListEntry from '.components/ListEntry.jsx'
+import ListEntry from './ListEntry.jsx'
 
 function List (props) {
   return (
-    <div>List</div>
+    <div>
+      {props.dataList.map((element) => {
+        return <ListEntry eachList = {element}/>
+      })}
+    </div>
   )
+
 }
 
 export default List;
