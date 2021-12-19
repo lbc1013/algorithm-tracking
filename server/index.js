@@ -11,7 +11,6 @@ app.use (express.static('client/dist'));
 app.use (bodyParser.json({}));
 
 app.post ('/algorithm', (req, res) => {
-  let userInputData = req.body;
   let userInputAlgo = req.body.algorithm;
   let userInputLan = req.body.language;
 
@@ -49,6 +48,21 @@ app.delete ('/algorithm', (req, res) => {
     .catch ((err) => {
       res.sendStatus(500);
       console.log('There is an error deleting the data in db', err);
+    })
+})
+
+app.put ('/algorithm', (req, res) => {
+  let userInputAlgo = req.body.algorithm;
+  let userInputLan = req.body.language;
+
+  db.updateFunc (userInputAlgo, userInputLan)
+    .then ((result) => {
+      res.send(result);
+      console.log(result, 'The data has been successfully updated');
+    })
+    .catch ((err) => {
+      res.sendStatus(500);
+      console.log('There is an error updating the data in db', err);
     })
 })
 

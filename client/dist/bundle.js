@@ -152,6 +152,7 @@ var AddBar = /*#__PURE__*/function (_React$Component) {
         type: "submit",
         value: "Delete"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("input", {
+        onClick: this.props.handleUpdate,
         type: "submit",
         value: "Update"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("br", null));
@@ -225,6 +226,7 @@ var App = /*#__PURE__*/function (_React$Component) {
     _this.handleSumbit = _this.handleSumbit.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this));
     _this.handleGet = _this.handleGet.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this));
     _this.handleDelete = _this.handleDelete.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this));
+    _this.handleUpdate = _this.handleUpdate.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this));
     return _this;
   }
 
@@ -294,6 +296,29 @@ var App = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "handleUpdate",
+    value: function handleUpdate(event) {
+      var _this5 = this;
+
+      event.preventDefault();
+      var algorithmUserInput = document.getElementById('algor').value;
+      var languageUserInput = document.getElementById('lag').value;
+      axios__WEBPACK_IMPORTED_MODULE_7___default()({
+        method: 'put',
+        url: '/algorithm',
+        data: {
+          algorithm: algorithmUserInput,
+          language: languageUserInput
+        }
+      }).then(function (result) {
+        console.log("The Update request has been successfully done", result);
+
+        _this5.handleGet();
+      })["catch"](function (err) {
+        console.log("The Update request has an error");
+      });
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       console.log('app started');
@@ -303,6 +328,7 @@ var App = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("h2", null, "[Algorithms Tracker]"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_AddBar_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        handleUpdate: this.handleUpdate,
         handleDelete: this.handleDelete,
         handleSumbit: this.handleSumbit
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_List_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {

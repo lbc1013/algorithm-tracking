@@ -51,3 +51,16 @@ exports.deleteFunc = (userInputAlgo) => {
     })
   })
 }
+
+exports.updateFunc = (userInputAlgo, userInputLan) => {
+  let sql = 'UPDATE algorithm SET language = ? WHERE name = ?';
+  return new Promise ((resolve, reject) => {
+    connection.query(sql, [userInputLan, userInputAlgo], (err, result) => {
+      if (err) {
+        reject (err);
+      } else {
+        resolve(result);
+      }
+    })
+  })
+}
