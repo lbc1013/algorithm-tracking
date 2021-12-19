@@ -38,3 +38,16 @@ exports.getFunc = () => {
     })
   })
 }
+
+exports.deleteFunc = (userInputAlgo) => {
+  let sql = 'DELETE FROM algorithm WHERE name = ?';
+  return new Promise ((resolve, reject) => {
+    connection.query(sql, [userInputAlgo], (err, result) => {
+      if (err) {
+        reject (err);
+      } else {
+        resolve(result);
+      }
+    })
+  })
+}

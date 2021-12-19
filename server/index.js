@@ -38,6 +38,20 @@ app.get ('/algorithm', (req, res) => {
     })
 })
 
+app.delete ('/algorithm', (req, res) => {
+  let userInputAlgo = req.body.algorithm;
+
+  db.deleteFunc (userInputAlgo)
+    .then ((result) => {
+      res.send(result);
+      console.log(result, 'The data has been successfully deleted');
+    })
+    .catch ((err) => {
+      res.sendStatus(500);
+      console.log('There is an error deleting the data in db', err);
+    })
+})
+
 app.listen (PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
 })

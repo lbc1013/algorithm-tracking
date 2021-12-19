@@ -17,7 +17,7 @@ class AddBar extends React.Component {
       <input type="text" id="lag"/><br/>
       <br/>
       <input onClick = {this.props.handleSumbit} type="submit" value="Submit"></input>
-      <input type="submit" value="Delete"></input>
+      <input onClick = {this.props.handleDelete} type="submit" value="Delete"></input>
       <input type="submit" value="Update"></input>
       <br/>
       <br/>

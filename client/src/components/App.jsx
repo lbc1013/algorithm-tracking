@@ -12,6 +12,7 @@ class App extends React.Component {
 
     this.handleSumbit = this.handleSumbit.bind(this);
     this.handleGet = this.handleGet.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleSumbit (event) {
@@ -53,9 +54,30 @@ class App extends React.Component {
       })
   }
 
+  handleDelete (event) {
+    event.preventDefault();
+    let algorithmUserInput = document.getElementById('algor').value;
+    let languageUserInput = document.getElementById('lag').value;
 
+    axios({
+      method: 'delete',
+      url: '/algorithm',
+      data: {
+        algorithm: algorithmUserInput,
+        language: languageUserInput
+      }
+    })
+      .then ((result) => {
+        console.log("The Delete request has been successfully done", result);
+        this.handleGet();
+      })
+      .catch ((err) => {
+        console.log("The Delete request has an error");
+      })
+  }
 
   componentDidMount () {
+    console.log('app started')
     this.handleGet();
   }
 
@@ -63,7 +85,7 @@ class App extends React.Component {
     return (
     <div>
       <h2>[Algorithms Tracker]</h2>
-      <AddBar handleSumbit = {this.handleSumbit}/>
+      <AddBar handleDelete = {this.handleDelete} handleSumbit = {this.handleSumbit}/>
       <List dataList = {this.state.list}/>
     </div>
     );
