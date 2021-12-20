@@ -369,12 +369,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function List(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, props.dataList.map(function (element) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Algorithm"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Language"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, props.dataList.map(function (element) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ListEntry_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
       handleAlgorithmClick: props.handleAlgorithmClick,
       eachList: element
     });
-  }));
+  })))) // // <div>
+  //   {props.dataList.map((element) => {
+  //     return <ListEntry handleAlgorithmClick = {props.handleAlgorithmClick}eachList = {element}/>
+  //   })}
+  // // </div>
+  ;
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (List);
@@ -395,17 +400,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function ListEntry(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "ListEntry"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    onClick: function onClick() {
-      props.handleAlgorithmClick(props.eachList.name);
-    },
-    id: "algo"
-  }, "Algorithm Name : ", props.eachList.name, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    "class": "lang",
-    id: props.eachList.name
-  }, "Language : ", props.eachList.language));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.eachList.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, props.eachList.language)) // <div id='ListEntry'>
+  //   <p onClick = {() => {props.handleAlgorithmClick(props.eachList.name)}} id='algo'>Algorithm Name : {props.eachList.name} </p>
+  //   <p class='lang' id={props.eachList.name}>Language : {props.eachList.language}</p>
+  // </div>
+  ;
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (ListEntry);

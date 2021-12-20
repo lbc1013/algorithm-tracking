@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      list : []
+      list : [],
     };
 
     //http requeest related
@@ -119,6 +119,12 @@ class App extends React.Component {
       <h2>[Algorithms Tracker]</h2>
       <AddBar handleUpdate = {this.handleUpdate} handleDelete = {this.handleDelete} handleSumbit = {this.handleSumbit}/>
       <List handleAlgorithmClick = {this.handleAlgorithmClick} dataList = {this.state.list}/>
+
+      {/* {
+      (this.state.view === 'test1') ? <div>This is test1</div>:
+      (this.state.view === 'test2') ? <div>This is test2</div>:
+      null
+      } */}
     </div>
     );
   }

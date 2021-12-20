@@ -23,3 +23,17 @@ body {
   border-top: 1px solid black;
   display: none;
 }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table, td, th {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+th, td {
+  padding: 20px;
+}

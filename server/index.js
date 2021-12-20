@@ -2,10 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const jsonParser = bodyParser.json()
 const app = express();
-const db = require('../mysql/index.js');
+// const db = require('../mysql/index.js');
+const db = require('../mongodb/index.js');
 
 const PORT = 3000 || process.env.PORT;
-
 
 app.use (express.static('client/dist'));
 app.use (bodyParser.json({}));
@@ -14,7 +14,7 @@ app.post ('/algorithm', (req, res) => {
   let userInputAlgo = req.body.algorithm;
   let userInputLan = req.body.language;
 
-  db.addFunc(userInputAlgo, userInputLan)
+  db.addFunc (userInputAlgo, userInputLan)
     .then ((result) => {
       res.sendStatus(201);
       console.log(result, 'The data has been successfully posted');
@@ -26,6 +26,7 @@ app.post ('/algorithm', (req, res) => {
 })
 
 app.get ('/algorithm', (req, res) => {
+
   db.getFunc ()
     .then ((result) => {
       res.send(result);
